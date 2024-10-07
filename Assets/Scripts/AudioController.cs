@@ -38,9 +38,16 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void PlaySFX(SFX sfx)
     {
-        sfxSource.PlayOneShot(clip);
+        foreach (IDSound sound in sfxSounds)
+        {
+            if (sound.sfx == sfx)
+            {
+                sfxSource.PlayOneShot(sound.clip);
+                return;
+            }
+        }
     }
 
     [ContextMenu("Build Sounds Array")]
